@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:networking_db_demo_flutter_app/DBManager.dart';
-import 'DataModel.dart';
+import 'package:networking_db_demo_flutter_app/DatabaseManager/DBManager.dart';
+import '../Models/DataModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 

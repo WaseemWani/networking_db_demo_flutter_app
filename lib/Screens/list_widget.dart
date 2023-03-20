@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:networking_db_demo_flutter_app/DBManager.dart';
-import 'DataModel.dart';
-import 'NetworkManager.dart';
+import 'package:networking_db_demo_flutter_app/DatabaseManager/DBManager.dart';
+import '../Models/DataModel.dart';
+import '../NetworkManager/NetworkManager.dart';
 import 'dart:async';
 
 class ListSample extends StatefulWidget {
@@ -37,7 +37,7 @@ class _ListSampleState extends State<ListSample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List View"),
+        title: Text("Todo List"),
       ),
       body: FutureBuilder<List<Todo>>(
         future: todo,

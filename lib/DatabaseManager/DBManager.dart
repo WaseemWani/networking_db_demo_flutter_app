@@ -3,7 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
-import 'DataModel.dart';
+import '../Models/DataModel.dart';
 
 class DBManager {
   DBManager.createInstance();
