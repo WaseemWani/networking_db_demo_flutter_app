@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
 class Todo {
   final int userId;
   final int id;
@@ -15,5 +12,9 @@ class Todo {
         id: json['id'],
         title: json['title'],
         completed: json['completed']);
+  }
+
+  Map<String, dynamic> toMap() {
+    return {'userId': userId, 'id': id, 'title': title};
   }
 }

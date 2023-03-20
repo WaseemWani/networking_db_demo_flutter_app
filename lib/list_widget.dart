@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:networking_db_demo_flutter_app/DBManager.dart';
 import 'DataModel.dart';
 import 'NetworkManager.dart';
 import 'dart:async';
@@ -17,11 +18,19 @@ class _ListSampleState extends State<ListSample> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    todo = NetworkManager().getData();
-    print("hello from initstate...");
-    print(todo);
+    fetchData();
+  }
+
+  fetchData() async {
+    var isDatabaseEmpty = await DBManager.dbManager.isEmpty();
+    if (isDatabaseEmpty) {
+      setState(() {
+        todo = NetworkManager().getData();
+      });
+    } else {
+      todo = DBManager.dbManager.retrieve();
+    }
   }
 
   @override
@@ -33,7 +42,6 @@ class _ListSampleState extends State<ListSample> {
       body: FutureBuilder<List<Todo>>(
         future: todo,
         builder: (context, snapshot) {
-          print('hey from builder');
           print(snapshot.data);
           if (snapshot.data != null) {
             return ListView.separated(
@@ -58,11 +66,14 @@ class _ListSampleState extends State<ListSample> {
   }
 
   Widget generateListItem(Todo todoData) {
-    print('inside list creation function');
     print(todoData);
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(todoData.title),
-      Text(todoData.id.toString()),
+      Row(children: [
+        Text("Todo id"),
+        SizedBox(width: 20),
+        Text(todoData.id.toString())
+      ])
     ]);
   }
 }
